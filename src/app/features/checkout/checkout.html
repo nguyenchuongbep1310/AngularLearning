@@ -1,0 +1,73 @@
+<h2>Checkout Form</h2>
+
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+      <!-- Name -->
+      <label>Name:
+        <input type="text" formControlName="name" />
+      </label>
+      <div class="error" *ngIf="name.hasError('required') && name.touched">
+        Name is required.
+      </div>
+      <div class="error" *ngIf="name.hasError('minlength') && name.touched">
+        Name must be at least 3 characters.
+      </div>
+      <div class="error" *ngIf="name.hasError('forbiddenName') && name.touched">
+        The name "admin" is not allowed.
+      </div>
+
+      <!-- Email -->
+      <label>Email:
+        <input type="email" formControlName="email" />
+      </label>
+      <div class="error" *ngIf="email.hasError('required') && email.touched">
+        Email is required.
+      </div>
+      <div class="error" *ngIf="email.hasError('email') && email.touched">
+        Must be a valid email format.
+      </div>
+      <div class="error" *ngIf="email.hasError('emailTaken')">
+        This email is already registered.
+      </div>
+
+      <!-- Phone -->
+      <label>Phone:
+        <input type="text" formControlName="phone" />
+      </label>
+      <div class="error" *ngIf="phone.hasError('required') && phone.touched">
+        Phone number is required.
+      </div>
+      <div class="error" *ngIf="phone.hasError('pattern') && phone.touched">
+        Must be at least 9 digits and contain only numbers.
+      </div>
+
+      <!-- Address -->
+      <label>Address:
+        <input type="text" formControlName="address" />
+      </label>
+      <div class="error" *ngIf="address.hasError('required') && address.touched">
+        Address is required.
+      </div>
+
+      <!-- Quantity -->
+      <label>Quantity:
+        <input type="number" formControlName="quantity" />
+      </label>
+      <div class="error" *ngIf="quantity.hasError('required') && quantity.touched">
+        Quantity is required.
+      </div>
+      <div class="error" *ngIf="quantity.hasError('min') && quantity.touched">
+        Must be at least 1.
+      </div>
+      <div class="error" *ngIf="checkoutForm.hasError('maxQuantity')">
+        Maximum allowed quantity is 10.
+      </div>
+
+      <button type="submit" [disabled]="checkoutForm.invalid">Submit</button>
+    </form>
+
+    <h3>Orders (local memory)</h3>
+    <ul>
+      <li *ngFor="let o of orders">
+        {{ o.name }} – {{ o.email }} – {{ o.phone }} – {{ o.quantity }}
+      </li>
+    </ul>
