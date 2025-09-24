@@ -6,14 +6,7 @@ import { RouterLink } from '@angular/router';
   selector: 'app-products',
   standalone: true,
   imports: [RouterLink, NgFor],
-  template: `
-    <h2>Products Page</h2>
-    <ul>
-      <li *ngFor="let p of products">
-        <a [routerLink]="['/products', p.id]">{{ p.name }}</a>
-      </li>
-    </ul>
-  `
+  templateUrl: './products.html',
 })
 export class Products {
   products = [
@@ -21,4 +14,8 @@ export class Products {
     { id: 2, name: 'Laptop' },
     { id: 3, name: 'Shoes' }
   ];
+
+   constructor() {
+    console.log('✅ Products component loaded');
+  }
 }
