@@ -10,30 +10,8 @@ import { Product } from '../../models/product.model';
   selector: 'app-home',
   standalone: true,
   imports: [NgFor, NgIf, NgClass, FormsModule, CurrencyPipe, DatePipe, Highlight],
-  template: `
-    <h1>Product List</h1>
-
-    <input type="text" [(ngModel)]="filter" placeholder="Filter products..." />
-    <button (click)="sortByPrice()">Sort by Price</button>
-
-    <ul>
-      <li *ngFor="let p of filteredProducts()" [ngClass]="{ expensive: p.price > 100 }">
-        <span [innerHTML]="p.name | highlight:filter"></span> –
-        {{ p.price | currency:'USD' }} –
-        {{ p.created | date:'mediumDate' }}
-      </li>
-    </ul>
-
-    <p *ngIf="filteredProducts().length === 0">No products found.</p>
-  `,
-  styles: [`
-    input { margin: 8px 0; padding:4px; }
-    button { margin-left:8px; }
-    ul { margin:12px 0; padding:0; list-style:none; }
-    li { padding:4px 0; }
-    .expensive { color: darkred; font-weight:600; }
-    mark { background: yellow; }
-  `]
+  templateUrl: './home.html',
+  styleUrl: './home.scss'
 })
 export class Home {
   filter = '';

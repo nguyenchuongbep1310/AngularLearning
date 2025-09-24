@@ -1,0 +1,14 @@
+<h1>Product List</h1>
+
+<input type="text" [(ngModel)]="filter" placeholder="Filter products..." />
+<button (click)="sortByPrice()">Sort by Price</button>
+
+<ul>
+  <li *ngFor="let p of filteredProducts()" [ngClass]="{ expensive: p.price > 100 }">
+    <span [innerHTML]="p.name | highlight:filter"></span> –
+    {{ p.price | currency:'USD' }} –
+    {{ p.created | date:'mediumDate' }}
+  </li>
+</ul>
+
+<p *ngIf="filteredProducts().length === 0">No products found.</p>
