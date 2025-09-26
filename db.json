@@ -1,0 +1,5 @@
+{
+  "orders": [
+    { "id": 1, "productId": 1, "userId": 100, "quantity": 2, "totalPrice": 398, "status": "pending", "created": "2025-09-24T10:00:00Z" }
+  ]
+}

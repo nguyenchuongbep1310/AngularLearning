@@ -23,5 +23,11 @@ export const routes: Routes = [
       import('./features/checkout/checkout').then(c => c.Checkout),
     title: 'Checkout'
   },
+  {
+    path: 'order',
+    loadComponent: () =>
+      import('./features/order/order').then(c => c.Orders),
+    title: 'Order'
+  },
   { path: '**', redirectTo: '' }
 ];
