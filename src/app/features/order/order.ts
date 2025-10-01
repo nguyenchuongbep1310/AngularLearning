@@ -10,15 +10,7 @@ import { Order } from '../../models/order.model';
   selector: 'app-orders',
   standalone: true,
   imports: [NgFor, AsyncPipe],
-  template: `
-    <h3>Orders</h3>
-    <button (click)="reload()">Reload</button>
-    <ul>
-      <li *ngFor="let o of orders$ | async">
-        Order #{{ o.id }} – {{ o.status }} – {{ o.totalPrice }}$
-      </li>
-    </ul>
-  `
+  templateUrl: './order.html',
 })
 export class Orders implements OnInit {
   orders$: Observable<Order[]>;

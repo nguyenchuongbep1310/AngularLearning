@@ -1,1 +1,7 @@
-<p>order works!</p>
+<h3>Orders</h3>
+<button (click)="reload()">Reload</button>
+<ul>
+    <li *ngFor="let o of orders$ | async">
+        Order #{{ o.id }} – {{ o.status }} – {{ o.totalPrice }}$
+    </li>
+</ul>
