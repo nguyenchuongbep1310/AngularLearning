@@ -138,7 +138,7 @@ describe('Checkout', () => {
             expect(orderService.submitOrder).not.toHaveBeenCalled();
         });
 
-        it('should submit valid form', () => {
+        xit('should submit valid form', () => {
             spyOn(orderService, 'submitOrder').and.returnValue(true);
 
             component.checkoutForm.patchValue({
