@@ -1,10 +1,29 @@
 <header class="hdr">
-      <a routerLink="/" class="brand">Angular 20 Demo</a>
-      <nav>
-        <a routerLink="/" class="link">Home</a>
-        <a routerLink="/products" class="link">Products</a>
-        <a routerLink="/cart" class="link">Cart</a>
-        <a routerLink="/checkout" class="link">Checkout</a>
-        <a routerLink="/order" class="link">Order</a>
-      </nav>
-    </header>
+  <a routerLink="/" class="brand">Angular 20 Demo</a>
+  <nav>
+    <a routerLink="/" class="link">Home</a>
+    <a routerLink="/products" class="link">Products</a>
+    
+    <ng-container *ngIf="currentUser$ | async as user; else guestLinks">
+      <a routerLink="/cart" class="link">Cart</a>
+      <a routerLink="/checkout" class="link">Checkout</a>
+      <a routerLink="/order" class="link">Order</a>
+      
+      <!-- Admin only link -->
+      <a routerLink="/admin" class="link" *appHasRole="'admin'">Admin</a>
+      
+      <span class="user-info">
+        Welcome, {{ user.username }} 
+        <span class="role-badge" [class.admin]="user.role === 'admin'">
+          {{ user.role }}
+        </span>
+      </span>
+      <button (click)="logout()" class="btn-logout">Logout</button>
+    </ng-container>
+    
+    <ng-template #guestLinks>
+      <a routerLink="/login" class="link">Login</a>
+      <a routerLink="/register" class="link">Register</a>
+    </ng-template>
+  </nav>
+</header>
