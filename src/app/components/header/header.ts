@@ -3,6 +3,8 @@ import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { HasRoleDirective } from '../../directives/has-role.directive';
+import { Observable } from 'rxjs';
+import { User } from '../../models/auth.model';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +14,7 @@ import { HasRoleDirective } from '../../directives/has-role.directive';
   styleUrl: './header.scss'
 })
 export class Header {
-  currentUser$: any;
+  currentUser$: Observable<User | null>;
 
   constructor(private authService: AuthService) {
     this.currentUser$ = this.authService.currentUser$;
